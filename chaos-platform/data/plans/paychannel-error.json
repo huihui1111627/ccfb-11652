@@ -1,0 +1,35 @@
+{
+  "name": "paychannel-error",
+  "description": "支付渠道 100% 返回 500(关键路径无降级预案时的表现)",
+  "duration_s": 50,
+  "abort_after": 3,
+  "rules": [
+    {
+      "id": "pay-err",
+      "target": "paychannel",
+      "type": "error",
+      "error_status": 500,
+      "error_rate": 1.0,
+      "match": {}
+    }
+  ],
+  "steps": [
+    {
+      "at_s": 8,
+      "action": "inject",
+      "rule": "pay-err"
+    },
+    {
+      "at_s": 38,
+      "action": "recover",
+      "rule": "pay-err"
+    }
+  ],
+  "steady_state": [
+    {
+      "metric": "client.inquiry.error_rate",
+      "op": "<",
+      "value": 0.1
+    }
+  ]
+}

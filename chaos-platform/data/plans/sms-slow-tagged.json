@@ -1,0 +1,58 @@
+{
+  "name": "sms-slow-tagged",
+  "description": "同上,但只命中带 X-Chaos-Tag: chaos 的演练流量(爆炸半径限制)",
+  "duration_s": 50,
+  "abort_after": 3,
+  "blast_zone": [
+    "sms"
+  ],
+  "rules": [
+    {
+      "id": "sms-slow-tag-1",
+      "target": "smsprovider-1",
+      "type": "latency",
+      "latency_ms": 8000,
+      "match": {
+        "tag": "chaos"
+      }
+    },
+    {
+      "id": "sms-slow-tag-2",
+      "target": "smsprovider-2",
+      "type": "latency",
+      "latency_ms": 8000,
+      "match": {
+        "tag": "chaos"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "at_s": 8,
+      "action": "inject",
+      "rule": "sms-slow-tag-1"
+    },
+    {
+      "at_s": 8,
+      "action": "inject",
+      "rule": "sms-slow-tag-2"
+    },
+    {
+      "at_s": 38,
+      "action": "recover",
+      "rule": "sms-slow-tag-1"
+    },
+    {
+      "at_s": 38,
+      "action": "recover",
+      "rule": "sms-slow-tag-2"
+    }
+  ],
+  "steady_state": [
+    {
+      "metric": "client.error_rate",
+      "op": "<",
+      "value": 0.15
+    }
+  ]
+}

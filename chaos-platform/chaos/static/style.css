@@ -1,0 +1,74 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+       background: #0f1420; color: #d7dde8; font-size: 14px; }
+header { display: flex; justify-content: space-between; align-items: center;
+         padding: 12px 20px; background: #161d2e; border-bottom: 1px solid #262f45; }
+h1 { font-size: 18px; }
+h1 small { color: #7f8ba3; font-weight: normal; margin-left: 8px; }
+h2 { font-size: 15px; margin: 14px 0 8px; color: #9fb0d0; }
+h3 { font-size: 14px; margin: 14px 0 6px; color: #9fb0d0; }
+.badge { padding: 3px 10px; border-radius: 10px; margin-right: 8px; font-size: 12px; }
+.badge.on { background: #134e2c; color: #6fe3a1; }
+.badge.off { background: #4a2030; color: #ff9aa8; }
+.badge.run { background: #3a2f10; color: #ffd479; }
+#client-stats { color: #8fa0c0; font-size: 12px; }
+nav { display: flex; gap: 4px; padding: 8px 20px; background: #131a2a; }
+nav button { background: none; border: none; color: #8fa0c0; padding: 8px 16px;
+             cursor: pointer; font-size: 14px; border-bottom: 2px solid transparent; }
+nav button.active { color: #fff; border-bottom-color: #4f8cff; }
+main { padding: 16px 20px; }
+.tab { display: none; }
+.tab.active { display: block; }
+.cards { display: flex; flex-wrap: wrap; gap: 10px; }
+.card { background: #161d2e; border: 1px solid #262f45; border-radius: 8px;
+        padding: 10px 12px; width: 210px; }
+.card.bad { border-color: #a03a4a; }
+.card.warn { border-color: #8a6d2f; }
+.card h4 { font-size: 13px; margin-bottom: 6px; }
+.card .row { display: flex; justify-content: space-between; font-size: 12px;
+             color: #8fa0c0; margin: 2px 0; }
+.bar { height: 6px; background: #232c42; border-radius: 3px; margin: 4px 0; }
+.bar > div { height: 100%; border-radius: 3px; background: #4f8cff; }
+.bar.hot > div { background: #ff5d6c; }
+.tbl { width: 100%; border-collapse: collapse; margin-top: 6px; }
+.tbl th, .tbl td { border: 1px solid #262f45; padding: 5px 8px; font-size: 12px;
+                   text-align: left; }
+.tbl th { background: #161d2e; color: #9fb0d0; }
+.state-CLOSED { color: #6fe3a1; }
+.state-OPEN { color: #ff5d6c; }
+.state-HALF_OPEN { color: #ffd479; }
+.cols { display: flex; gap: 20px; }
+.col-left { width: 240px; }
+.col-main { flex: 1; }
+.list { list-style: none; }
+.list li { padding: 8px 10px; background: #161d2e; border: 1px solid #262f45;
+           border-radius: 6px; margin-bottom: 6px; cursor: pointer; }
+.list li.sel { border-color: #4f8cff; }
+.list li small { display: block; color: #7f8ba3; margin-top: 2px; }
+textarea { width: 100%; background: #0d1220; color: #c8d4ea; border: 1px solid #262f45;
+           border-radius: 6px; padding: 8px; font-family: Menlo, monospace;
+           font-size: 12px; }
+.btn-row { margin: 8px 0; display: flex; gap: 8px; align-items: center; }
+button { background: #232c42; color: #d7dde8; border: 1px solid #34405e;
+         border-radius: 6px; padding: 6px 14px; cursor: pointer; font-size: 13px; }
+button:hover { background: #2b3650; }
+button.primary { background: #2456a8; border-color: #3a6fc4; }
+button.danger { background: #6e2434; border-color: #93344a; }
+.form { display: flex; flex-wrap: wrap; gap: 10px; align-items: end;
+        background: #161d2e; padding: 12px; border-radius: 8px; margin-bottom: 10px; }
+.form label { font-size: 12px; color: #8fa0c0; display: flex; flex-direction: column;
+              gap: 4px; }
+.form input, .form select { background: #0d1220; color: #d7dde8;
+        border: 1px solid #34405e; border-radius: 4px; padding: 5px 8px; width: 120px; }
+.verdict { background: #161d2e; border-left: 3px solid #4f8cff; padding: 8px 12px;
+           margin: 6px 0; border-radius: 0 6px 6px 0; }
+.verdict.bad { border-left-color: #ff5d6c; }
+.verdict.good { border-left-color: #6fe3a1; }
+canvas.chart { background: #0d1220; border: 1px solid #262f45; border-radius: 6px;
+               margin: 8px 0; }
+.heat td { text-align: center; min-width: 34px; }
+select#report-select { background: #0d1220; color: #d7dde8; border: 1px solid #34405e;
+        border-radius: 4px; padding: 6px 10px; margin-bottom: 10px; min-width: 320px; }
+.ok { color: #6fe3a1; }
+.fail { color: #ff5d6c; }
+.muted { color: #7f8ba3; }

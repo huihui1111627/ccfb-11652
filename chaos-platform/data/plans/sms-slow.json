@@ -1,0 +1,59 @@
+{
+  "name": "sms-slow",
+  "description": "短信运营商通道延迟 50ms -> 8s(复现去年事故:全站线程被拖垮)",
+  "duration_s": 50,
+  "abort_after": 3,
+  "blast_zone": [
+    "sms"
+  ],
+  "rules": [
+    {
+      "id": "sms-slow-1",
+      "target": "smsprovider-1",
+      "type": "latency",
+      "latency_ms": 8000,
+      "match": {}
+    },
+    {
+      "id": "sms-slow-2",
+      "target": "smsprovider-2",
+      "type": "latency",
+      "latency_ms": 8000,
+      "match": {}
+    }
+  ],
+  "steps": [
+    {
+      "at_s": 8,
+      "action": "inject",
+      "rule": "sms-slow-1"
+    },
+    {
+      "at_s": 8,
+      "action": "inject",
+      "rule": "sms-slow-2"
+    },
+    {
+      "at_s": 38,
+      "action": "recover",
+      "rule": "sms-slow-1"
+    },
+    {
+      "at_s": 38,
+      "action": "recover",
+      "rule": "sms-slow-2"
+    }
+  ],
+  "steady_state": [
+    {
+      "metric": "client.error_rate",
+      "op": "<",
+      "value": 0.3
+    },
+    {
+      "metric": "client.p95_ms",
+      "op": "<",
+      "value": 6000
+    }
+  ]
+}
